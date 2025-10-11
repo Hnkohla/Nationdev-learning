@@ -1,0 +1,5 @@
+Project: NationDev Learning Platform
+Author: Hlumile Khanyo Nkohla (hnkohla)
+Repository: https://github.com/hnkohla/nationdev
+
+This minimalist implementation maintains all required functionality while reducing complexity and file count. The platform focuses on delivering quality education to African developers through a streamlined, efficient codebase.

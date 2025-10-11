@@ -1,0 +1,10 @@
+Forms
+=====
+
+Core Forms
+---------
+
+.. automodule:: core.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:

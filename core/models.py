@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.urls import reverse
 
 class Course(models.Model):
+    """Represents a course with details such as title, description, price, and level."""
     LEVEL_CHOICES = [
         ('BEG', 'Beginner'),
         ('INT', 'Intermediate'),
@@ -25,6 +26,7 @@ class Course(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
+        """Returns the course title for display purposes."""
         return self.title
 
     class Meta:

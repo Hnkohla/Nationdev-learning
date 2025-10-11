@@ -1,3 +1,7 @@
+"""
+Views for handling requests and rendering templates in the core Django app.
+Author: Hlumile Khanyo Nkohla (hnkohla)
+"""
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -9,10 +13,11 @@ from .models import Course, BlogPost, CourseReview
 from .forms import CustomUserCreationForm, CourseReviewForm
 
 def nationdev(request):
-    # Redirect to courses page for the Explore Courses button
+    """Redirects user to the courses page when the Explore Courses button is clicked."""
     return redirect('courses')
 
 def about(request):
+    """Renders the About page. Displays an error message if loading fails."""
     try:
         return render(request, 'core/about.html')
     except Exception as e:
@@ -20,6 +25,7 @@ def about(request):
         return render(request, 'core/about.html', {'error': True})
 
 def home(request):
+    """Renders the homepage, showing featured courses and recent blog posts."""
     if request.path == '/home/':
         return redirect('home')  # Redirect /home/ to root URL
         

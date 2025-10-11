@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ course.title }} Content - NationDev{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="mb-4">
+        <a href="{% url 'course-detail' course.pk %}" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left"></i> Back to Course Overview
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="card-title">{{ course.title }} - Course Content</h1>
+            
+            <div class="alert alert-info">
+                <h4 class="alert-heading">Welcome to the course!</h4>
+                <p>You have full access to this course's content. Make sure to complete all modules and exercises.</p>
+            </div>
+
+            <!-- Course modules would be dynamically loaded here -->
+            <div class="course-modules mt-4">
+                <h3>Course Modules</h3>
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <h5 class="mb-1">Module 1: Introduction</h5>
+                        <p class="mb-1">Course overview and setup instructions</p>
+                        <small class="text-muted">Duration: 1 week</small>
+                    </div>
+                    <!-- Add more modules as needed -->
+                </div>
+            </div>
+
+            <!-- Course resources -->
+            <div class="course-resources mt-4">
+                <h3>Resources</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-2">📚 Course materials</li>
+                    <li class="mb-2">💻 Code examples</li>
+                    <li class="mb-2">📝 Practice exercises</li>
+                    <li class="mb-2">📹 Video tutorials</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

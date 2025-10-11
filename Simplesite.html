@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nationdev - Where Digital Architects Transform Tomorrow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Header */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(30, 64, 175, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-explore {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .btn-explore:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+        }
+
+        .btn-login {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-login:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(rgba(30, 64, 175, 0.8), rgba(79, 172, 254, 0.7)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><text x="50" y="100" font-family="monospace" font-size="14" fill="%2300ff00" opacity="0.3">const future = async () => { await learn(); build(); deploy(); }</text><text x="100" y="150" font-family="monospace" font-size="14" fill="%2300ff00" opacity="0.3">class Developer { constructor() { this.skills = ["innovation"]; } }</text><text x="80" y="200" font-family="monospace" font-size="14" fill="%2300ff00" opacity="0.3">function transformCareer() { return success.guaranteed(); }</text><text x="60" y="250" font-family="monospace" font-size="14" fill="%2300ff00" opacity="0.3">if (dedication === true) { outcome = "extraordinary"; }</text><text x="90" y="300" font-family="monospace" font-size="14" fill="%2300ff00" opacity="0.3">while (learning) { opportunities++; salary *= 2.67; }</text><text x="70" y="350" font-family="monospace" font-size="14" fill="%2300ff00" opacity="0.3">import { success } from "nationdev"; export default brilliance;</text><text x="50" y="400" font-family="monospace" font-size="14" fill="%2300ff00" opacity="0.3">const bootcamp = new Promise((resolve) => resolve("career transformation"));</text><text x="100" y="450" font-family="monospace" font-size="14" fill="%2300ff00" opacity="0.3">async function graduate() { await skills.master(); return dream.job(); }</text><text x="80" y="500" font-family="monospace" font-size="14" fill="%2300ff00" opacity="0.3">developers.forEach(student => student.future = "secured");</text></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .motto {
+            font-size: 24px;
+            color: #e0f2fe;
+            margin-bottom: 30px;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Founder Section */
+        .founder-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 5%;
+            color: white;
+        }
+
+        .founder-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .founder-story {
+            animation: slideInLeft 1s ease;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .founder-story h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .founder-story p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #e0f2fe;
+        }
+
+        .highlight-text {
+            color: #fbbf24;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-title {
+            font-size: 36px;
+            color: #1e40af;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .stat-description {
+            font-size: 18px;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e0f2fe 100%);
+            padding: 80px 5%;
+        }
+
+        .courses-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .courses-title {
+            text-align: center;
+            font-size: 36px;
+            color: #1e40af;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #4facfe;
+        }
+
+        .course-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-title {
+            font-size: 24px;
+            color: #1e40af;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .course-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .enroll-btn {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        /* Remote Bootcamp Banner */
+        .remote-banner {
+            background: linear-gradient(45deg, #1e40af, #4facfe);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .remote-banner h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .remote-banner p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .login-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-form h2 {
+            color: #1e40af;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #64748b;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0f2fe;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            color: #64748b;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #1e40af;
+            transform: rotate(90deg);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 40px 5%;
+            margin-top: 80px;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .motto {
+                font-size: 18px;
+            }
+
+            .founder-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .login-form {
+                width: 90%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="fixed-header">
+        <div class="header-content">
+            <div class="logo">NATIONDEV</div>
+            <div class="nav-buttons">
+                <button class="btn btn-login" onclick="openLogin()">Login</button>
+                <a href="#courses" class="btn btn-explore" onclick="showPage('courses')">Explore Courses</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <!-- Hero Banner -->
+            <section class="hero-banner">
+                <div class="hero-content">
+                    <h1>Welcome to Nationdev</h1>
+                    <p class="motto">Developers are Built, Empires are Launched, Futures are Secured.</p>
+                    <button class="btn btn-explore" onclick="showPage('about')">Discover Our Story</button>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="stats-container">
+                    <h2 class="stats-title">Transforming Lives Through Technology</h2>
+                    <p style="font-size: 20px; color: #64748b; margin-bottom: 30px;">
+                        Join the revolution that has empowered over 4,600 graduates to shatter barriers and thrive in the digital economy
+                    </p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">167%</div>
+                            <div class="stat-description">Average Salary Increase for Our Graduates</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">93.8%</div>
+                            <div class="stat-description">Graduates Successfully Placed in Tech Roles</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">91%</div>
+                            <div class="stat-description">Career Transitions to High-Demand Tech & AI Fields</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Remote Bootcamp Banner -->
+            <div class="remote-banner">
+                <h3>100% Remote Learning Experience</h3>
+                <p>Access world-class tech education from anywhere. Your location is no longer a barrier to your dreams.</p>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <section class="founder-section">
+                <div class="founder-content">
+                    <div class="founder-story">
+                        <h2>The Visionary Behind Nationdev</h2>
+                        <p>
+                            Meet <span class="highlight-text">Hlumile Khanyo Nkohla</span>, a transformative force in technology education and a beacon of inspiration for aspiring developers worldwide.
+                        </p>
+                        <p>
+                            From a curious youngster exploring the depths of computer systems through game modifications, Hlumile's journey epitomizes the power of passion meeting purpose. His fascination with technology transformed from childhood curiosity into an unstoppable drive to master the digital realm.
+                        </p>
+                        <p>
+                            Beginning his formal programming odyssey in December 2024 with a single line of code, Hlumile's meteoric rise through the ranks of technology is nothing short of extraordinary. Today, standing as both a distinguished Software Engineering authority and a formidable Cybersecurity expert, his expertise spans the entire spectrum of modern digital innovation.
+                        </p>
+                        <p>
+                            <span class="highlight-text">Beyond personal achievement lies a greater mission.</span> Through Nationdev, Hlumile has catalyzed the transformation of over 4,600 individuals, turning aspirations into achievements and dreams into deployable solutions. This remarkable impact has positioned him not just as an educator, but as a political force for change in technology accessibility and career transformation.
+                        </p>
+                        <p>
+                            His philosophy is simple yet profound: Technology should empower everyone, regardless of background or circumstance. This belief drives Nationdev's mission to democratize tech education and create pathways to prosperity for all.
+                        </p>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <div style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%); padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                            <h3 style="font-size: 28px; margin-bottom: 20px;">Our Impact</h3>
+                            <p style="font-size: 48px; font-weight: bold; margin-bottom: 10px;">4,600+</p>
+                            <p style="font-size: 20px;">Lives Transformed</p>
+                            <p style="font-size: 16px; margin-top: 20px; opacity: 0.95;">Every graduate represents a success story, a broken barrier, and a brighter future secured through technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Courses Page -->
+        <div id="courses" class="page">
+            <section class="courses-section">
+                <div class="courses-container">
+                    <h2 class="courses-title">Transform Your Future With Our Cutting-Edge Programs</h2>
+                    <p style="text-align: center; font-size: 20px; color: #64748b; margin-bottom: 50px;">
+                        Master the skills that industry leaders demand. Choose your path to technological excellence.
+                    </p>
+                    
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <h3 class="course-title">Data Analyst</h3>
+                            <p class="course-description">
+                                Transform raw information into strategic insights. Master advanced analytics tools, statistical methods, and visualization techniques that drive million-dollar business decisions. Become the bridge between data and strategy.
+                            </p>
+                            <button class="enroll-btn">Start Your Journey</button>
+                        </div>
+
+                        <div class="course-card">
+                            <h3 class="course-title">Data Engineer</h3>
+                            <p class="course-description">
+                                Architect the backbone of modern data infrastructure. Design scalable pipelines, optimize massive databases, and build the systems that power AI and analytics at enterprise scale. Shape how organizations handle their most valuable asset.
+                            </p>
+                            <button class="enroll-btn">Build Your Future</button>
+                        </div>
+
+                        <div class="course-card">
+                            <h3 class="course-title">Artificial Intelligence</h3>
+                            <p class="course-description">
+                                Pioneer the future of technology. Develop neural networks, create intelligent systems, and master machine learning algorithms that redefine what's possible. Join the elite ranks of AI innovators shaping tomorrow.
+                            </p>
+                            <button class="enroll-btn">Innovate Now</button>
+                        </div>
+
+                        <div class="course-card">
+                            <h3 class="course-title">Cybersecurity</h3>
+                            <p class="course-description">
+                                Become the guardian of the digital realm. Master ethical hacking, threat detection, and security architecture. Protect organizations from evolving cyber threats and command premium salaries in this critical field.
+                            </p>
+                            <button class="enroll-btn">Secure Your Career</button>
+                        </div>
+
+                        <div class="course-card">
+                            <h3 class="course-title">Marketing & Data Science</h3>
+                            <p class="course-description">
+                                Merge creativity with analytics to drive unprecedented growth. Master digital marketing strategies powered by data science, predictive modeling, and consumer behavior analysis. Become the strategic mind brands desperately need.
+                            </p>
+                            <button class="enroll-btn">Amplify Success</button>
+                        </div>
+                    </div>
+
+                    <div class="remote-banner" style="margin-top: 60px;">
+                        <h3>Your Transformation Begins Today</h3>
+                        <p>Every expert was once a beginner. Your extraordinary tech career starts with a single decision.</p>
+                        <button class="btn btn-explore" style="margin-top: 20px; background: white; color: #1e40af;">Apply Now</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Nationdev. Empowering the Next Generation of Tech Leaders.</p>
+        <p>Where Ambition Meets Opportunity | Transform Your Tomorrow Today</p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-form">
+            <button class="close-modal" onclick="closeLogin()">&times;</button>
+            <h2>Welcome Back</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter your username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            // Smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Login Modal Functions
+        function openLogin() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeLogin() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple demonstration - in real implementation, this would connect to a backend
+            alert(`Welcome back, ${username}! You're now logged in to Nationdev.`);
+            closeLogin();
+            
+            // Clear form
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target === modal) {
+                closeLogin();
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe stat cards and course cards
+        document.querySelectorAll('.stat-card, .course-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Dynamic year update
+        const currentYear = new Date().getFullYear();
+        document.querySelector('.footer p').innerHTML = `&copy; ${currentYear} Nationdev. Empowering the Next Generation of Tech Leaders.`;
+    </script>
+</body>
+</html>

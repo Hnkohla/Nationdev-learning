@@ -1,0 +1,56 @@
+# Django project .gitignore
+# Author: Hlumile Khanyo Nkohla (hnkohla)
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Django
+*.log
+local_settings.py
+settings_local.py
+
+# Database
+*.sqlite3
+*.db
+
+# Media and static files
+/media/
+/static/
+
+# Virtual environments
+venv/
+ENV/
+.env
+.env.*
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# Sphinx documentation build
+/docs/_build/
+
+# Docker
+*.pid
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.secret
+*.key
+
+# Temporary files
+*.tmp
+*.bak
+
+# Exclude generated documentation from .gitignore so docs are tracked
+!docs/

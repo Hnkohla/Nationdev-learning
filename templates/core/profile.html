@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ user.get_full_name|default:user.username }}'s Profile - NationDev{% endblock %}
+
+{% block content %}
+<style>
+    .profile-section {
+        background: linear-gradient(135deg, #f3f4f6 0%, #e0f2fe 100%);
+        padding: 80px 5%;
+        min-height: 100vh;
+    }
+
+    .profile-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .profile-header {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-top: 4px solid #4facfe;
+    }
+
+    .profile-name {
+        font-size: 32px;
+        color: #1e40af;
+        margin-bottom: 10px;
+    }
+
+    .profile-email {
+        color: #64748b;
+        font-size: 18px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        color: #1e40af;
+        margin: 40px 0 20px;
+        font-weight: bold;
+    }
+
+    .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .course-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-title {
+        font-size: 20px;
+        color: #1e40af;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .course-level {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 15px;
+        background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+    }
+
+    .review-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .review-course {
+        font-size: 18px;
+        color: #1e40af;
+        font-weight: bold;
+    }
+
+    .review-rating {
+        color: #f59e0b;
+    }
+
+    .review-text {
+        color: #64748b;
+        line-height: 1.6;
+    }
+
+    .review-date {
+        color: #94a3b8;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .no-items {
+        text-align: center;
+        color: #64748b;
+        font-size: 18px;
+        padding: 40px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<section class="profile-section">
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1 class="profile-name">{{ user.get_full_name|default:user.username }}</h1>
+            <div class="profile-email">{{ user.email }}</div>
+        </div>
+
+        <h2 class="section-title">Enrolled Courses</h2>
+        {% if enrolled_courses %}
+        <div class="course-grid">
+            {% for course in enrolled_courses %}
+            <div class="course-card">
+                <span class="course-level">{{ course.get_level_display }}</span>
+                <h3 class="course-title">{{ course.title }}</h3>
+                <p class="course-description">{{ course.description|truncatewords:30 }}</p>
+                <a href="{% url 'course-detail' course.pk %}" class="btn btn-primary mt-3">
+                    View Course
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-items">
+            You haven't enrolled in any courses yet. 
+            <br>
+            <a href="{% url 'courses' %}" class="btn btn-primary mt-3">Browse Courses</a>
+        </div>
+        {% endif %}
+
+
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ course.title }} - NationDev{% endblock %}
+
+{% block content %}
+<div class="course-detail-header mb-5">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="py-3">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'courses' %}" class="text-decoration-none">Courses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ course.title }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container pb-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card course-detail-card">
+                <div class="course-image-container">
+                    {% if course.image %}
+                    <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}">
+                    {% endif %}
+                    <div class="course-badges">
+                        <span class="badge bg-{{ course.get_level_display|lower }} me-2">
+                            {{ course.get_level_display }}
+                        </span>
+                        <span class="badge bg-info">
+                            <i class="fas fa-clock me-1"></i>{{ course.duration_weeks }} weeks
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h1 class="course-title">{{ course.title }}</h1>
+                    <div class="course-meta d-flex align-items-center mb-3">
+                        <div class="me-4">
+                            <i class="fas fa-users me-2 text-primary"></i>
+                            <span>{{ course.reviews.count }} enrolled</span>
+                        </div>
+                        <div class="me-4">
+                            <i class="fas fa-star me-2 text-warning"></i>
+                            <span>{{ course.average_rating|default:"No ratings yet" }}</span>
+                        </div>
+                    </div>
+                    <p class="card-text">{{ course.description }}</p>
+                    
+                    <h4 class="mt-4">Course Reviews</h4>
+                    {% if user.is_authenticated %}
+                        {% if user_review %}
+                            <div class="alert alert-info">
+                                You have already reviewed this course.
+                            </div>
+                        {% else %}
+                            <form method="post" class="mb-4">
+                                {% csrf_token %}
+                                {{ review_form.as_p }}
+                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                            </form>
+                        {% endif %}
+                    {% else %}
+                        <div class="alert alert-warning">
+                            Please <a href="{% url 'login' %}">login</a> to leave a review.
+                        </div>
+                    {% endif %}
+
+                    {% for review in course.reviews.all %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="card-subtitle mb-2 text-muted">{{ review.user.get_full_name|default:review.user.username }}</h6>
+                                <div class="text-warning">
+                                    {% for i in review.rating|make_list %}
+                                    ★
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <p class="card-text">{{ review.review_text }}</p>
+                            <small class="text-muted">{{ review.created_date|date }}</small>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted">No reviews yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="text-primary mb-4">${{ course.price }}</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">✓ Full course access</li>
+                        <li class="mb-2">✓ Project assignments</li>
+                        <li class="mb-2">✓ Certificate of completion</li>
+                        <li class="mb-2">✓ Community access</li>
+                    </ul>
+                    {% if user.is_authenticated %}
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg">Enroll Now</button>
+                    </div>
+                    {% else %}
+                    <div class="d-grid">
+                        <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login to Enroll</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

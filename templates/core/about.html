@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Story - NationDev{% endblock %}
+
+{% block content %}
+<style>
+    .founder-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 80px 5%;
+        color: white;
+    }
+
+    .founder-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .founder-story {
+        animation: slideInLeft 1s ease;
+    }
+
+    .founder-story h2 {
+        font-size: 42px;
+        margin-bottom: 30px;
+        color: #fbbf24;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .founder-story p {
+        font-size: 18px;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        color: #e0f2fe;
+    }
+
+    .highlight-text {
+        color: #fbbf24;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .stats-section {
+        background: white;
+        padding: 80px 5%;
+        text-align: center;
+    }
+
+    .stats-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .stats-title {
+        font-size: 36px;
+        color: #1e40af;
+        margin-bottom: 50px;
+        font-weight: bold;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 50px;
+    }
+
+    .stat-card {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transform: translateY(0);
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-number {
+        font-size: 48px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 10px;
+    }
+
+    .stat-description {
+        font-size: 18px;
+        color: white;
+        font-weight: 500;
+    }
+</style>
+
+<section class="founder-section">
+    <div class="founder-content">
+        <div class="founder-story">
+            <h2>Our Vision for Tech Education</h2>
+            <p>At NationDev, we believe in transforming lives through technology education. Our journey began with a simple yet powerful idea: make high-quality tech education accessible to everyone, everywhere.</p>
+            <p class="highlight-text">"Technology should empower, not intimidate. Education should liberate, not constrain."</p>
+            <p>We've built more than just a learning platform - we've created a community where aspiring developers can turn their dreams into reality, regardless of their background or previous experience.</p>
+        </div>
+        <div class="founder-image">
+            <!-- Placeholder for founder image or decorative element -->
+            <div style="background: rgba(255,255,255,0.1); height: 400px; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-code" style="font-size: 80px; color: #fbbf24;"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="stats-container">
+        <h2 class="stats-title">Our Impact in Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">5,000+</div>
+                <div class="stat-description">Successful Graduates</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">96%</div>
+                <div class="stat-description">Employment Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">150+</div>
+                <div class="stat-description">Partner Companies</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <h2 class="mb-4">Our Coffee Origins</h2>
+            <div class="row">
+                {% for origin in origins %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ origin.name }}</h3>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ origin.country }} - {{ origin.region }}</h6>
+                            <p class="card-text">
+                                <strong>Altitude:</strong> {{ origin.altitude }}<br>
+                                {{ origin.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <h2 class="mb-4">Our Roasting Process</h2>
+            <div class="row">
+                {% for profile in roasting_profiles %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ profile.name }}</h3>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ profile.get_roast_level_display }}</h6>
+                            <p class="card-text">
+                                <strong>Duration:</strong> {{ profile.duration }} minutes<br>
+                                {{ profile.notes }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

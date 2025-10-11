@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nationdev - Where Digital Architects Transform Tomorrow{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Header */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(30, 64, 175, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-explore {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .btn-explore:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+        }
+
+        .btn-login {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-login:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="fixed-header">
+        <div class="header-content">
+            <button onclick="goBack()" class="btn btn-login" title="Go back to previous page">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <a href="{% url 'home' %}" class="logo">
+                <span style="color: #4facfe">Nation</span>Dev
+            </a>
+            <nav class="nav-buttons">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'courses' %}" class="btn btn-explore">Learning Hub</a>
+                    <a href="{% url 'profile' %}" class="btn btn-login">
+                        <i class="fas fa-user-circle"></i> Dashboard
+                    </a>
+                    <a href="{% url 'logout' %}" class="btn btn-login">
+                        <i class="fas fa-sign-out-alt"></i> Exit
+                    </a>
+                {% else %}
+                    <a href="{% url 'courses' %}" class="btn btn-explore">Explore Courses</a>
+                    <a href="{% url 'login' %}" class="btn btn-login">Sign In</a>
+                    <a href="{% url 'register' %}" class="btn btn-explore">Join Free</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert" style="
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    padding: 15px 25px;
+                    border-radius: 8px;
+                    background: {% if message.tags == 'success' %}#4CAF50{% else %}#f44336{% endif %};
+                    color: white;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                ">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <script>
+    function goBack() {
+        if (document.referrer) {
+            window.location.href = document.referrer;
+        } else {
+            window.history.back();
+        }
+    }
+    </script>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

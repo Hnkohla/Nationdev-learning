@@ -1,0 +1,282 @@
+/* Custom variables */
+:root {
+    --coffee-brown: #4A3C31;
+    --cream: #F5E6D3;
+    --dark-roast: #2C1810;
+    --light-roast: #A67C52;
+    --accent-gold: #D4AF37;
+}
+
+/* General styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--coffee-brown);
+    line-height: 1.6;
+}
+
+/* Button animations and effects */
+.btn-glow {
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+}
+
+.btn-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+}
+
+/* Pulsing animation for new features */
+@keyframes subtle-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.badge {
+    animation: subtle-pulse 2s infinite;
+}
+
+/* Course Cards */
+.course-card {
+    transition: all 0.3s ease-in-out;
+    border: none;
+    background: #ffffff;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-image-wrapper img {
+    transition: transform 0.5s ease;
+}
+
+.course-card:hover .card-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.course-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+}
+
+.btn-hover-effect {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-hover-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.btn-hover-effect:hover::before {
+    left: 100%;
+}
+
+.course-stats {
+    color: var(--light-roast);
+    font-size: 0.9rem;
+}
+
+/* Course Detail Styles */
+.course-detail-header {
+    background: linear-gradient(135deg, var(--light-roast) 0%, var(--coffee-brown) 100%);
+    color: white;
+}
+
+.breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.breadcrumb-item.active {
+    color: white;
+}
+
+.course-detail-card {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.course-image-container {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.course-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.course-image-container:hover img {
+    transform: scale(1.05);
+}
+
+.course-badges {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+}
+
+.course-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--coffee-brown);
+    margin-bottom: 1rem;
+}
+
+.course-meta {
+    color: var(--light-roast);
+    font-size: 1.1rem;
+}
+
+/* Hero section */
+.hero-section {
+    background-color: var(--cream);
+    padding: 6rem 0;
+    margin-top: -1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/coffee-beans-bg.jpg') center/cover;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.hero-section * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--dark-roast) !important;
+}
+
+.navbar-brand {
+    color: var(--accent-gold) !important;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: var(--cream) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-gold) !important;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: var(--coffee-brown);
+    font-family: 'Playfair Display', serif;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--light-roast);
+    border-color: var(--light-roast);
+}
+
+.btn-primary:hover {
+    background-color: var(--coffee-brown);
+    border-color: var(--coffee-brown);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--dark-roast) !important;
+}
+
+.footer .text-muted {
+    color: var(--cream) !important;
+}
+
+/* Coffee Details */
+.coffee-details {
+    background-color: var(--cream);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.price {
+    color: var(--light-roast);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Reviews */
+.review-card {
+    background-color: white;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--light-roast);
+}
+
+/* Blog */
+.blog-post {
+    border-bottom: 1px solid var(--cream);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+.blog-post:last-child {
+    border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 4rem 0;
+    }
+    
+    .card {
+        margin-bottom: 2rem;
+    }
+}

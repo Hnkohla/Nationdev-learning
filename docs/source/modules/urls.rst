@@ -1,7 +1,7 @@
-urls module
-===========
+URLs
+====
 
-.. automodule:: urls
+.. automodule:: core.urls
    :members:
    :show-inheritance:
    :undoc-members:

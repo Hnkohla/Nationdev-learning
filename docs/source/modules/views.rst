@@ -1,7 +1,7 @@
-views module
-============
+Views
+=====
 
-.. automodule:: views
+.. automodule:: core.views
    :members:
    :show-inheritance:
    :undoc-members:

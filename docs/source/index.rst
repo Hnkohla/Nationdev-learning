@@ -1,5 +1,5 @@
 Welcome to Nationdev Learning's documentation!
-=========================================
+==============================================
 
 .. toctree::
    :maxdepth: 2
@@ -7,8 +7,10 @@ Welcome to Nationdev Learning's documentation!
 
    modules/core
    modules/forms
+   modules/urls
    modules/views
    modules/models
+   modules/modules
 
 Indices and tables
 ==================

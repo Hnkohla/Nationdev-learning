@@ -1,0 +1,21 @@
+core.templatetags package
+=========================
+
+Submodules
+----------
+
+core.templatetags.form\_tags module
+-----------------------------------
+
+.. automodule:: core.templatetags.form_tags
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: core.templatetags
+   :members:
+   :show-inheritance:
+   :undoc-members:

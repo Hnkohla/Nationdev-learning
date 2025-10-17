@@ -1,0 +1,37 @@
+core.management.commands package
+================================
+
+Submodules
+----------
+
+core.management.commands.add\_sample\_data module
+-------------------------------------------------
+
+.. automodule:: core.management.commands.add_sample_data
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+core.management.commands.create\_custom\_superuser module
+---------------------------------------------------------
+
+.. automodule:: core.management.commands.create_custom_superuser
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+core.management.commands.setup\_superuser module
+------------------------------------------------
+
+.. automodule:: core.management.commands.setup_superuser
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: core.management.commands
+   :members:
+   :show-inheritance:
+   :undoc-members:
